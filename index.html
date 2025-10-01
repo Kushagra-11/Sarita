@@ -1,0 +1,282 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarita Tailor's Enterprises - Expert Tailoring Services</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Primary/Text Color: Orangish-yellow
+                        'brand-primary': '#FFAE42',
+                        // Action/Button Color: Red
+                        'brand-action': '#D81216',
+                        'brand-whatsapp': '#25D366',
+                    },
+                    fontFamily: {
+                        // Using Poppins for headings as requested
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="font-body text-gray-800 bg-white">
+
+    <div id="booking-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden transition-opacity duration-300 opacity-0 flex justify-center items-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg p-6 md:p-8 transform transition-all duration-300 scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-heading font-bold text-brand-action">Book Your Visit ✂️</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="booking-form" class="space-y-4">
+                <div>
+                    <label for="customer-name" class="block text-sm font-medium text-gray-700">Name <span class="text-brand-action">*</span></label>
+                    <input type="text" id="customer-name" name="name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-brand-primary focus:ring-brand-primary transition duration-150">
+                </div>
+                <div>
+                    <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone Number <span class="text-brand-action">*</span></label>
+                    <input type="tel" id="phone-number" name="phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-brand-primary focus:ring-brand-primary transition duration-150">
+                </div>
+                <div>
+                    <label for="service-selection" class="block text-sm font-medium text-gray-700">Service Required <span class="text-brand-action">*</span></label>
+                    <select id="service-selection" name="service" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-brand-primary focus:ring-brand-primary transition duration-150 bg-white">
+                        <option value="" disabled selected>Select a service</option>
+                        <option value="Kurti and Plaujo">Kurti and Plaujo</option>
+                        <option value="Blauge">Blauge</option>
+                        <option value="Wedding contract">Wedding contract</option>
+                        <option value="Any type of fitting of any cloth">Any type of fitting of any cloth</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div id="other-service-field" class="hidden">
+                    <label for="custom-service" class="block text-sm font-medium text-gray-700">Describe Your Custom Service <span class="text-brand-action">*</span></label>
+                    <input type="text" id="custom-service" name="custom_service" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-brand-primary focus:ring-brand-primary transition duration-150">
+                </div>
+                <div>
+                    <label for="customer-address" class="block text-sm font-medium text-gray-700">Address (Optional)</label>
+                    <input type="text" id="customer-address" name="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:border-brand-primary focus:ring-brand-primary transition duration-150">
+                </div>
+                
+                <button type="submit" class="w-full bg-brand-whatsapp text-white py-3 rounded-md font-bold text-lg hover:bg-green-600 transition duration-300 mt-6 flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.15 6.42 2.15 11.88C2.15 13.82 2.69 15.6 3.71 17.11L2.36 21.67L7.14 20.31C8.58 21.16 10.23 21.61 12.04 21.61C17.5 21.61 21.93 17.18 21.93 11.88C21.93 6.42 17.5 2 12.04 2ZM17.18 16.59C16.94 17.1 14.54 18.15 14.07 18.25C13.6 18.34 13.35 18.47 12.04 17.98C10.73 17.49 8.52 16.81 6.94 14.65C5.74 13.06 5.16 11.66 5.06 11.41C4.96 11.16 5.3 10.99 5.56 10.73C5.78 10.51 6.02 10.2 6.18 10C6.34 9.8 6.47 9.81 6.64 10.2C6.81 10.59 7.42 12.16 7.59 12.55C7.77 12.94 7.91 13 8.16 13.25C8.42 13.51 8.65 13.56 8.91 13.41C10.03 12.83 11.37 12.28 12.44 11.39C13.3 10.66 14.0 9.8 14.25 9.49C14.51 9.18 14.77 9.24 14.99 9.46C15.22 9.68 15.52 9.97 15.74 10.23C15.96 10.49 16.1 10.6 16.29 10.72C16.51 10.84 17.65 11.43 17.91 11.65C18.17 11.87 18.34 11.96 18.41 12.18C18.49 12.4 18.49 13.6 17.76 14.93C17.38 15.63 16.96 16.14 16.55 16.59C17.1 17.1 17.18 16.59 17.18 16.59Z"/></svg>
+                    Send Request on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md shadow-md transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="text-2xl font-heading font-bold text-brand-action hover:text-brand-primary transition-colors">
+                    Sarita Tailor's Enterprises
+                </a>
+
+                <nav class="hidden md:flex space-x-6 lg:space-x-10 items-center">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-brand-action transition duration-300 font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-brand-action transition duration-300 font-medium">Services</a>
+                    <a href="#location" class="nav-link text-gray-700 hover:text-brand-action transition duration-300 font-medium">Location</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-brand-action transition duration-300 font-medium">Contact</a>
+                    <button id="cta-button-desktop" class="bg-brand-action text-white py-2 px-4 rounded-full font-bold shadow-md hover:bg-red-700 transition duration-300 uppercase text-sm tracking-wide transform hover:scale-105">
+                        Book a Visit
+                    </button>
+                </nav>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg pb-2 transition-all duration-300 ease-in-out">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-action transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+            <a href="#services" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-action transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+            <a href="#location" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-action transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Location</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-brand-action transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+            <button id="cta-button-mobile" class="w-full text-left px-4 py-2 bg-brand-action text-white hover:bg-red-700 transition duration-300 mt-2 font-bold">
+                Book a Visit
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        
+        <section id="home" class="py-16 md:py-24 bg-gradient-to-br from-white to-blue-50/50 overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    
+                    <div class="md:w-3/5 text-center md:text-left animate-fade-in-left">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-gray-900 leading-tight mb-4">
+                            Expert Tailor of Women Cloths, <span class="text-brand-primary">having 5yrs Experience</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
+                            I can stitch any type of women's clothes with the best fitting, like: **Kurti-Plaujo**, **Blouse**, and many more. Quality craftsmanship is guaranteed.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                            <a href="tel:8881095226" class="inline-flex items-center justify-center bg-brand-action text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                Call Us: 8881095226
+                            </a>
+                            <button id="hero-whatsapp-button" class="inline-flex items-center justify-center bg-brand-whatsapp text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-105 uppercase tracking-wider">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.15 6.42 2.15 11.88C2.15 13.82 2.69 15.6 3.71 17.11L2.36 21.67L7.14 20.31C8.58 21.16 10.23 21.61 12.04 21.61C17.5 21.61 21.93 17.18 21.93 11.88C21.93 6.42 17.5 2 12.04 2Z"/></svg>
+                                Book on WhatsApp
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="md:w-2/5 flex justify-center animate-fade-in-right">
+                        <img src="https://img.freepik.com/free-photo/tailoring-processs_1098-17986.jpg?semt=ais_hybrid&w=740&q=80" 
+                            alt="Tailoring process, close-up shot of a seamstress working on a machine" 
+                            class="rounded-3xl shadow-2xl object-cover w-full max-w-md h-auto transition duration-500 hover:shadow-brand-primary/50">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-16 md:py-20 bg-gray-50 animate-fade-in">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-heading font-extrabold text-gray-900 mb-3">Our Expert <span class="text-brand-action">Services</span></h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Providing a range of high-quality tailoring services for all your women's wear needs.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <div class="service-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-brand-primary text-center transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                        <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-brand-primary/10 text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2zM12 4v16m-4-8h8"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Kurti and Plaujo</h3>
+                        <p class="text-gray-600 text-sm">I can make any type of kurti and plaujo with ongoing trends also.</p>
+                    </div>
+
+                    <div class="service-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-brand-primary text-center transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                        <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-brand-primary/10 text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-2.414-2.414A1 1 0 0015.586 6H7a2 2 0 00-2 2v11a2 2 0 002 2zM10 10v4m4-4v4m4-4v4"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Blouse</h3>
+                        <p class="text-gray-600 text-sm">I can make any type of blouse with ongoing trends and new designs also.</p>
+                    </div>
+
+                    <div class="service-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-brand-primary text-center transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                        <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-brand-primary/10 text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM5 19a2 2 0 01-2-2v-1a2 2 0 012-2h4a2 2 0 012 2v1a2 2 0 01-2 2H5z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Wedding Contract</h3>
+                        <p class="text-gray-600 text-sm">I can also take the contract for a whole wedding party's tailoring needs.</p>
+                    </div>
+
+                    <div class="service-card p-6 bg-white rounded-xl shadow-lg border-t-4 border-brand-primary text-center transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                        <div class="mb-4 inline-flex items-center justify-center p-3 rounded-full bg-brand-primary/10 text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-2.5m0 5h2.5M7 14h2.5m4-12.5a.75.75 0 01.75.75v5.5a.75.75 0 01-1.5 0V2.25a.75.75 0 01.75-.75zM12 21h2a2 2 0 002-2v-7a2 2 0 00-2-2h-2m-4 0H8a2 2 0 00-2 2v7a2 2 0 002 2h2"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">Any Type of Fitting</h3>
+                        <p class="text-gray-600 text-sm">Expert in fitting and alteration of any type of cloth with precision and comfort.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="py-16 md:py-20 bg-white animate-fade-in-up">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-heading font-extrabold text-gray-900 mb-3">Visit Us <span class="text-brand-action">Today</span></h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Find our enterprise and check our business hours to plan your visit.</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-10">
+                    
+                    <div class="lg:w-1/2 p-6 bg-gray-50 rounded-xl shadow-lg border-l-4 border-brand-action">
+                        <h3 id="contact" class="text-2xl font-heading font-bold text-gray-900 mb-4">Contact & Business Hours</h3>
+                        
+                        <div class="space-y-4 text-lg">
+                            <div class="flex items-start">
+                                <svg class="w-6 h-6 text-brand-primary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <div>
+                                    <p class="font-medium">Address:</p>
+                                    <p class="text-gray-600">C-48, harihar nagar, Indira nager, Lucknow, Uttar Pradesh, INDIA</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-brand-primary mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                <div>
+                                    <p class="font-medium">Call Us:</p>
+                                    <a href="tel:8881095226" class="text-brand-action hover:text-brand-primary transition-colors">8881095226</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-brand-whatsapp mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.15 6.42 2.15 11.88C2.15 13.82 2.69 15.6 3.71 17.11L2.36 21.67L7.14 20.31C8.58 21.16 10.23 21.61 12.04 21.61C17.5 21.61 21.93 17.18 21.93 11.88C21.93 6.42 17.5 2 12.04 2Z"/></svg>
+                                <div>
+                                    <p class="font-medium">WhatsApp:</p>
+                                    <a href="https://wa.me/8881095226" target="_blank" class="text-brand-whatsapp hover:text-green-700 transition-colors">8881095226</a>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4">
+                                <p class="text-xl font-heading font-bold text-gray-900 mb-2 border-t pt-4">Business Hours ⏱️</p>
+                                <p><strong>Mon - Sat:</strong> 12:00 PM - 9:00 PM</p>
+                                <p><strong>Sun:</strong> 1:00 PM - 7:00 PM</p>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.app.goo.gl/fkWBBfJPCxoZnMrE9" target="_blank" class="mt-6 inline-flex items-center bg-brand-primary text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-orange-500 transition duration-300 transform hover:scale-[1.03]">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Get Directions
+                        </a>
+                    </div>
+                    
+                    <div class="lg:w-1/2 rounded-xl shadow-2xl overflow-hidden aspect-video lg:aspect-square">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113945.74836480572!2d80.8931983084346!3d26.870631853416035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd0a2717019d%3A0x8ef4e1e35a11c828!2sIndira%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1677777777777!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Google Maps Location">
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 py-6">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>© <span id="current-year"></span> Sarita Tailor's Enterprises. All rights reserved.</p>
+            <p class="text-sm mt-2">Crafted with precision in Lucknow, Uttar Pradesh.</p>
+            <p class="text-xs mt-1 text-gray-500">
+                Image used in Hero Section by <a href="https://www.freepik.com/" target="_blank" class="hover:text-white underline">Freepik</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

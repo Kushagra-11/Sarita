@@ -1,0 +1,74 @@
+/*
+ * style.css
+ * Custom styles for Sarita Tailor's Enterprises website
+ * Contains professional, subtle animations.
+ */
+
+/* 1. Page Load Fading Animation (General Fade In) */
+/* Apply this to sections for a subtle entrance */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 2. Hero Section Specific Animations */
+.animate-fade-in-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: fadeInLeft 0.8s ease-out 0.3s forwards;
+}
+
+.animate-fade-in-right {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInRight 0.8s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* 3. Service Card Hover Effect */
+/* Tailwind utilities already handle the transition, hover:shadow-xl, and hover:scale-[1.02] */
+/* This is a placeholder section to demonstrate the style.css purpose */
+.service-card {
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+}
+
+
+/* 4. Scroll-based Header Shadow/Border */
+/* This class will be added/removed by script.js */
+.header-scrolled {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Subtle line for separation */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* 5. Modal Display Animation Classes (for script.js) */
+
+/* Class to show the modal (opacity and scale up) */
+.modal-show {
+    opacity: 1 !important;
+}
+
+/* Class to set the modal's initial state for transition (hidden) */
+.modal-hide {
+    opacity: 0 !important;
+}
+
+/* Class to show the modal content (scale up) */
+#booking-modal > div.scale-95 {
+    transform: scale(1) !important;
+}
